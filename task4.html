@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>cards</title>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .navbar {
+        background-color: rgb(7, 3, 58);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 70px;
+        margin: 0;
+        z-index: 1;
+      }
+
+      .logo a {
+        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: chocolate;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 10px;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links li {
+        padding: 0 15px;
+      }
+
+      .nav-links a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .nav-links a:hover {
+        color: orange;
+        background-color: chocolate;
+      }
+      #menu-toggle {
+        display: none;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        width: 30px;
+      }
+
+      .hamburger span {
+        display: block;
+        height: 3px;
+        background-color: white;
+        margin: 5px 0;
+        border-radius: 2px;
+      }
+
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+        }
+
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          background-color: rgb(7, 3, 58);
+          position: absolute;
+          top: 60px;
+          left: 0;
+          z-index: 99;
+        }
+
+        .nav-links li {
+          text-align: left;
+          border-top: 1px solid rgba(255, 255, 255, 0.2);
+          padding: 10px 20px;
+        }
+
+        #menu-toggle:checked + .hamburger + .nav-links {
+          display: flex;
+        }
+
+      }
+
+      .carousel-slideshow {
+        position: relative;
+        max-width: 100%;
+        height: 400px;
+        margin: 90px 20px 20px 20px;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .carousel-heading {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgb(17, 14, 14);
+        font-size: 32px;
+        font-weight: bold;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+        z-index: 2;
+        justify-content: center;
+      }
+
+      .carousel-slideshow img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        border-radius: 12px;
+        animation-name: fadeSlide;
+        animation-duration: 18s;
+        animation-iteration-count: infinite;
+      }
+      .carousel-slideshow img:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .carousel-slideshow img:nth-child(2) {
+        animation-delay: 3s;
+      }
+      .carousel-slideshow img:nth-child(3) {
+        animation-delay: 6s;
+      }
+      .carousel-slideshow img:nth-child(4) {
+        animation-delay: 9s;
+      }
+      .carousel-slideshow img:nth-child(5) {
+        animation-delay: 12s;
+      }
+      .carousel-slideshow img:nth-child(6) {
+        animation-delay: 15s;
+      }
+
+
+      
+      @keyframes fadeSlide {
+        0% {
+          opacity: 0;
+        }
+        5% {
+          opacity: 1;
+        }
+        25% {
+          opacity: 1;
+        }
+        30% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      
+      .cardssection{
+        margin: 10px;
+         display: flex;
+         flex-wrap: wrap;
+          flex-direction: row;
+          gap: 20px;
+          justify-content: space-evenly;
+
+      }
+      .cards {
+        box-shadow: 6px 7px 5px rgba(17, 9, 2, 0.493);
+        background-color: rgb(246, 239, 239);
+        border: 2px solid rgb(221, 128, 6);
+        width: 250px;
+        border-radius: 12px;
+        height: auto;
+        text-align: center;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        padding: 10px;
+        height: 420px;
+        min-width: 230px;
+       
+      }
+
+      .cards:hover {
+        transform: scale(1.05);
+        box-shadow: 8px 10px 15px rgba(17, 9, 2, 0.5);
+      }
+
+      .cards img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto 10px auto;
+        border-radius: 8px;
+      }
+
+      .cards h2 {
+        margin: 8px 0 5px 0;
+        font-size: 22px;
+        color: rgb(7, 3, 58);
+      }
+
+      .cards p {
+        margin: 5px 0 10px 0;
+        font-size: 14px;
+        line-height: 1.5;
+        text-align: justify;
+      }
+
+      .cards button {
+        background-color: rgba(248, 133, 1, 0.8);
+        font-weight: bold;
+        height: 40px;
+        width: 120px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+      }
+
+      .cards button:hover {
+        background-color: rgb(214, 114, 0);
+        color: #fff;
+      }
+
+      p {
+        text-align: justify;
+      }
+
+      .img-1 {
+        float: left;
+        padding: 0px 20px 0px 0px;
+      }
+      .img-1:hover {
+        transform: scale(1.05);
+        box-shadow: 8px 10px 15px rgba(17, 9, 2, 0.5);
+      }
+      .img-2:hover {
+        transform: scale(1.05);
+        box-shadow: 8px 10px 15px rgba(17, 9, 2, 0.5);
+      }
+
+      .img-2 {
+        float: right;
+        padding: 0px 0px 0px 20px;
+      }
+
+      .container1,
+      .container2 {
+        margin: 80px 90px 80px 80px;
+      }
+
+      .para1,
+      .para2 {
+        padding: 3px;
+      }
+
+      button {
+        background-color: rgba(248, 133, 1, 0.532);
+        font-weight: bold;
+        height: 40px;
+        width: 100px;
+        border-radius: 12px;
+        border: none;
+      }
+
+      button:hover {
+        background-color: rgb(214, 114, 0);
+        color: rgb(246, 138, 38);
+      }
+
+      .footer-section {
+        background-color: rgb(7, 3, 58);
+        padding: 20px;
+        color: #fff;
+        text-align: center;
+      }
+
+      .footer-section .icons,
+      .footer-section .links {
+        display: block;
+        margin: 20px 20px;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-section li {
+        display: inline;
+        margin: 0 10px;
+      }
+
+      .footer-section a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .footer-section a:hover {
+        text-decoration: underline;
+      }
+
+      .footer-section p {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      @media screen and (max-width: 600px) {
+        body {
+          background-image: radial-gradient(chocolate, coral, orange);
+        }
+
+        /* /* .cards {
+          width: 80%;
+          margin: 10px 30px;
+          border-radius: 20px;
+        } */
+
+        .container1,
+        .container2 {
+          margin: 20px;
+        }
+
+        .img-1,
+        .img-2 {
+          float: none;
+          display: block;
+          padding: 0;
+          margin: 0 auto 20px auto;
+          text-align: center;
+        }
+
+        .img-1 img,
+        .img-2 img {
+          max-width: 100%;
+          height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="#">TravelLens</a>
+      </div>
+      <input type="checkbox" id="menu-toggle" />
+      <label class="hamburger" for="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Our Team</a></li>
+      </ul>
+    </nav>
+
+  
+
+    <div class="carousel-slideshow">
+      <div class="carousel-heading">Explore More Places</div>
+      <!-- <span class="arrow left">&lt;</span>
+      <span class="arrow right">&gt;</span> -->
+      <img src="images/baali.jpeg" alt="Bali" />
+      <img src="images/paris.avif" alt="Paris" />
+      <img src="images/thailand.jpg" alt="Thailand" />
+      <img src="images/vietnam.jpg" alt="Vietnam" />
+      <img src="images/historic temple.jpg" alt="Historic Temple" />
+      <img src="images/palace.avif" alt="Palace" />
+    </div>
+    <section class="cardssection">
+      <div class="cards">
+        <img src="images/burj kalifa.jpg" alt="not found" width="250px" />
+        <h2>Burj Kalifa</h2>
+        <p>
+          Burj Khalifa in Dubai is the world’s tallest building at 828 meters.
+          Known for its sleek design and stunning views, it symbolizes modern
+          engineering and attracts visitors from around the globe.
+        </p>
+        <button>Read More</button>
+      </div>
+      <div class="cards">
+        <img
+          src="images/china wall.jpg"
+          alt="not found"
+          height="160px"
+          width="250px"
+        />
+        <h2>China Wall</h2>
+        <p>
+          The Great Wall of China is an ancient fortification stretching
+          thousands of kilometers. Built to protect China from invasions, it is
+          a UNESCO World Heritage Site and one of the world's most iconic
+          landmarks.
+        </p>
+
+        <button>Read More</button>
+      </div>
+      <div class="cards">
+        <img
+          src="images/niagara falls.jpg"
+          alt="not found"
+          width="250px"
+          height="150px"
+        />
+        <h2>Niagara Falls</h2>
+        <p>
+          Niagara Falls is a famous waterfall on the border of the USA and
+          Canada. Known for its massive flow and scenic beauty, it attracts
+          millions of visitors each year for boat rides and breathtaking views.
+        </p>
+
+        <button>Read More</button>
+      </div>
+      <div class="cards">
+        <img
+          src="images/tajmahal.jpg"
+          alt="not found"
+          height="165px"
+          width="250px"
+        />
+        <h2>Taj Mahal</h2>
+        <p>
+          The Taj Mahal in Agra, India, is a white marble mausoleum built by
+          Emperor Shah Jahan. Famous for its beauty and symmetry, it symbolizes
+          love and is a UNESCO World Heritage Site.
+        </p>
+        <button>Read More</button>
+      </div>
+    </section>
+    <section>
+      <div class="container1">
+        <div class="img-1">
+          <img src="images/mount fuji.jpg" width="300px" height="170px" />
+        </div>
+        <div class="para1">
+          <p>
+            Mount Fuji is Japan’s tallest mountain at 3,776 meters, known for
+            its perfect cone shape and cultural importance. Located near Tokyo,
+            it's an active volcano and a UNESCO World Heritage Site. Tourists
+            visit for climbing in summer and scenic views year-round, especially
+            from the Fuji Five Lakes and Chureito Pagoda. It’s a symbol of
+            Japan's natural beauty and spiritual heritage.
+          </p>
+        </div>
+      </div>
+      <div class="container2">
+        <div class="img-2">
+          <img src="images/pyramid.avif" width="300px" height="170px" />
+        </div>
+        <div class="para2">
+          <p>
+            The Pyramids of Giza in Egypt are ancient wonders built over 4,500
+            years ago. This complex includes the Great Pyramid of Khufu, the
+            Pyramid of Khafre, and the Pyramid of Menkaure, along with the
+            iconic Sphinx. They were royal tombs showcasing incredible
+            engineering and are the last surviving Wonder of the Ancient World,
+            attracting millions of visitors each year.
+          </p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="footer-section">
+        <div class="icons">
+          <ul>
+            <li>
+              <a href="#"><i class="fab fa-facebook"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fab fa-google"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="links">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Contact us</a></li>
+            <li><a href="#">Our team</a></li>
+          </ul>
+        </div>
+        <p>&copy;2025 International tourist places.All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
